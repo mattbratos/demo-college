@@ -1,0 +1,196 @@
+---
+title: sorting-algorithms
+order: 8
+---
+
+# Chapter 8 - Sorting Algorithms
+
+Sorting is a fundamental concept in computer science that involves arranging elements in a specified order, typically in ascending or descending order. Efficient sorting algorithms are crucial because they can significantly improve the performance of applications, especially when dealing with large datasets. In this chapter, we will explore the most common sorting algorithms, analyze their efficiency, and implement them in C++.
+
+## Objectives
+- Learn fundamental sorting algorithms and their efficiency.
+- Implement sorting algorithms in C++.
+
+## Introduction to Sorting Concepts
+### Why Sorting Matters
+- Organizes data for easier access and comparison.
+- Enhances search algorithms' performance (e.g., binary search).
+- Improves user experience in applications.
+- Crucial for data processing in many algorithms and applications.
+
+### Types of Sorting
+- **Stable Sort**: Preserves the order of equal elements (e.g., merge sort).
+- **Unstable Sort**: Does not guarantee the order of equal elements (e.g., quick sort).
+
+## Basic Sorting Algorithms
+
+### Bubble Sort
+Bubble Sort is one of the simplest sorting algorithms. It repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order.
+
+#### Implementation
+```cpp
+#include <iostream>
+using namespace std;
+
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                swap(arr[j], arr[j + 1]);
+            }
+        }
+    }
+}
+```
+
+### Selection Sort
+Selection Sort divides the input list into two parts: the sorted part at the front and the unsorted part at the back. It repeatedly selects the smallest (or largest) element from the unsorted part and moves it to the sorted part.
+
+#### Implementation
+```cpp
+#include <iostream>
+using namespace std;
+
+void selectionSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int minIndex = i;
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        swap(arr[i], arr[minIndex]);
+    }
+}
+```
+
+### Insertion Sort
+Insertion Sort builds the final sorted array one element at a time. It is much less efficient on large lists than more advanced algorithms.
+
+#### Implementation
+```cpp
+#include <iostream>
+using namespace std;
+
+void insertionSort(int arr[], int n) {
+    for (int i = 1; i < n; i++) {
+        int key = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
+    }
+}
+```
+
+## Advanced Sorting Algorithms
+
+### Quick Sort
+Quick Sort is a divide-and-conquer algorithm. It picks an element as a pivot and partitions the array around the pivot. The pivot can be the first element, the last, or a random element.
+
+#### Implementation
+```cpp
+#include <iostream>
+using namespace std;
+
+int partition(int arr[], int low, int high) {
+    int pivot = arr[high];
+    int i = (low - 1);
+    for (int j = low; j < high; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            swap(arr[i], arr[j]);
+        }
+    }
+    swap(arr[i + 1], arr[high]);
+    return (i + 1);
+}
+
+void quickSort(int arr[], int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1); // Before pi
+        quickSort(arr, pi + 1, high); // After pi
+    }
+}
+```
+
+### Merge Sort
+Merge Sort is another divide-and-conquer algorithm that divides the input array into two halves, recursively sorts them, and then merges the sorted halves.
+
+#### Implementation
+```cpp
+#include <iostream>
+using namespace std;
+
+void merge(int arr[], int left, int mid, int right) {
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+
+    int* L = new int[n1];
+    int* R = new int[n2];
+
+    for (int i = 0; i < n1; i++)
+        L[i] = arr[left + i];
+    for (int j = 0; j < n2; j++)
+        R[j] = arr[mid + 1 + j];
+
+    int i = 0, j = 0, k = left;
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j])
+            arr[k++] = L[i++];
+        else
+            arr[k++] = R[j++];
+    }
+
+    while (i < n1)
+        arr[k++] = L[i++];
+    while (j < n2)
+        arr[k++] = R[j++];
+
+    delete[] L;
+    delete[] R;
+}
+
+void mergeSort(int arr[], int left, int right) {
+    if (left < right) {
+        int mid = left + (right - left) / 2;
+
+        mergeSort(arr, left, mid);
+        mergeSort(arr, mid + 1, right);
+
+        merge(arr, left, mid, right);
+    }
+}
+```
+
+## Analyzing Algorithm Complexity: Big O Notation
+Understanding algorithm complexity helps us gauge the efficiency of our sorting techniques.
+
+### Common Time Complexities
+- **Bubble Sort**: O(n²)
+- **Selection Sort**: O(n²)
+- **Insertion Sort**: O(n²) average; O(n) best case
+- **Quick Sort**: O(n log n) on average; O(n²) worst case
+- **Merge Sort**: O(n log n) 
+
+### Space Complexity
+- **Bubble, Selection, Insertion Sort**: O(1) (in-place)
+- **Quick Sort**: O(log n) average; O(n) worst case (depends on recursion depth)
+- **Merge Sort**: O(n) due to auxiliary arrays.
+
+## Practical Exercises
+1. **Implement and Test**: Write complete C++ programs that utilize the implementation of at least two sorting algorithms drawn from the examples provided. Test your implementations with random datasets and measure the time taken to sort.
+   
+2. **Compare Efficiency**: Create a benchmark program that compares the execution times of Bubble Sort, Insertion Sort, Quick Sort, and Merge Sort with various dataset sizes and randomized data.
+
+3. **Sort Different Data Types**: Modify your sorting implementations to work with arrays of strings or floating-point numbers. Ensure your sorting can handle different types of comparisons.
+
+4. **Algorithm Visualization**: Consider creating a simple visualization of how each algorithm sorts a list to better understand the process and flow of each.
+
+## Chapter Summary
+In this chapter, we delved into various sorting algorithms, including Bubble Sort, Selection Sort, Insertion Sort, Quick Sort, and Merge Sort. We implemented these algorithms in C++ and analyzed their time and space complexities using Big O notation.
+
+Sorting algorithms are not just a theoretical concept, but essential tools in programming that directly impact the efficiency of data organization and retrieval. As you experiment with these algorithms, focus on refining your understanding of their mechanisms and optimal use cases. Continue practicing implementing and adapting these sorting techniques as you develop your coding skills.

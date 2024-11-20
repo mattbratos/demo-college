@@ -1,0 +1,172 @@
+---
+title: functions-and-modular-programming
+order: 3
+---
+
+# Chapter 3 - Functions and Modular Programming
+
+## Introduction to Functions and Modular Programming
+
+Welcome, newbie hackers! In this chapter, we're diving into the building blocks of programming—**Functions**. Think of functions as mini-programs that help organize your code. They allow you to break down complex problems and avoid repetition—this is what we call *modular programming*. Modular programming is essential when you want your code to be reusable, readable, and easier to maintain. 
+
+So let’s gear up and learn how to wield the power of functions to create cleaner, more efficient code in C++!
+
+## What is a Function?
+
+A function is a self-contained block of code designed to perform a specific task. 
+
+### Key Features of Functions:
+- **Modularity**: Functions help divide your program into smaller, manageable parts.
+- **Reusability**: You can call the same function multiple times without rewriting code.
+- **Abstraction**: Functions hide the complex underlying details and expose only what is necessary.
+
+## Defining and Calling Functions
+
+### Syntax of a Function
+
+Here's the basic syntax to define a function in C++:
+
+```cpp
+returnType functionName(parameterType parameterName) {
+    // Body of the function
+    // Perform task
+    return value; // This is optional, depends on the return type
+}
+```
+
+- **returnType**: This defines the type of value that will be returned from the function (e.g., `int`, `float`, `void`).
+- **functionName**: The name of the function (use descriptive names!).
+- **parameterType**: Type of parameter(s) you are passing to the function.
+- **parameterName**: Actual name you will use to refer to the parameter inside the function.
+
+### Example: A Simple Function
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// Function definition
+int add(int a, int b) {
+    return a + b; // Return the sum of a and b
+}
+
+int main() {
+    int sum = add(5, 3); // Function call
+    cout << "The sum is: " << sum << endl; // Output: The sum is: 8
+    return 0;
+}
+```
+
+**In this example:**
+- We define a function named `add` that takes two integers, adds them, and returns the sum.
+- We call the `add` function in `main` and print the result.
+
+## Function Parameters and Return Types
+
+### Parameters
+
+Functions can take multiple parameters:
+
+- Parameters allow you to pass information to the function.
+- They can have default values.
+
+### Example with Multiple Parameters
+
+```cpp
+#include <iostream>
+using namespace std;
+
+float calculateArea(float length, float width) {
+    return length * width; // Returning area of rectangle
+}
+
+int main() {
+    float area = calculateArea(5.0, 3.0); // Function call with two parameters
+    cout << "The area is: " << area << endl; // Output: The area is: 15
+    return 0;
+}
+```
+
+### Return Types
+
+- The return type can be anything (like `int`, `float`, or even `void` if you don’t want to return anything).
+- Use `return` to send data back to the calling code.
+
+## Scope and Lifetime of Variables
+
+### Variable Scope
+
+- **Local Variables**: Defined within a function. They can only be accessed within that function.
+- **Global Variables**: Defined outside any function. They can be accessed from any function within the same file.
+
+### Example of Scope
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int globalVar = 10; // Global variable
+
+void demoFunction() {
+    int localVar = 5; // Local variable
+    cout << "Local Variable: " << localVar << endl;
+    cout << "Global Variable: " << globalVar << endl;
+}
+
+int main() {
+    demoFunction();
+    // cout << localVar; // Uncommenting this will cause an error
+    return 0;
+}
+```
+
+### Variable Lifetime
+
+- **Local variables** only exist while the function is executing.
+- **Global variables** persist for the life of the program.
+
+## Introduction to Recursive Functions
+
+### What is Recursion?
+
+Recursion is a technique where a function calls itself to solve a problem. 
+
+### Example: Factorial Calculation
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int factorial(int n) {
+    if (n <= 1) return 1; // Base case
+    return n * factorial(n - 1); // Recursive call
+}
+
+int main() {
+    int num = 5;
+    cout << "Factorial of " << num << " is: " << factorial(num) << endl; // Output: 120
+    return 0;
+}
+```
+
+**In this example:**
+- The `factorial` function calls itself with decremented values until it hits the base case (1).
+
+## Exercises
+
+Now it's time to put your skills to the test!
+
+1. **Write a function** that takes two integers and returns their maximum.
+2. Create a function called `power` that takes a base and an exponent and returns the result using recursion.
+3. Experiment by creating both local and global variables in a small program and print their values in different scopes.
+
+## Chapter Summary
+
+Congrats, hacker! Here’s a recap of what we learned:
+
+- **Functions** are essential for organizing code into reusable blocks.
+- You’ve learned how to define and call functions, including passing parameters and handling return values.
+- Understanding **scope and lifetime** helps manage variables effectively across your programs.
+- Introduced the concept of **recursion**, which allows functions to call themselves under certain conditions.
+
+With functions under your belt, you’re well-equipped to tackle larger programming challenges! In the next chapter, we’ll explore data structures like arrays—another key weapon in your coding arsenal. So get ready, because the adventure continues!

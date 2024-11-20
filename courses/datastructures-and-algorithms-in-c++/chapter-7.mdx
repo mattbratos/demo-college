@@ -1,0 +1,177 @@
+---
+title: binary-trees-and-tree-traversal
+order: 7
+---
+
+# Chapter 7 - Binary Trees and Tree Traversal
+
+## Introduction
+Welcome to the world of binary trees! In this chapter, we’re diving deep into the structure and manipulation of binary trees and how to traverse them like a pro. Whether you're building a game, managing data, or storing information for searching, understanding trees will significantly enhance your coding skills. 
+
+## Understanding Binary Trees
+
+### What is a Binary Tree?
+A **binary tree** is a hierarchical data structure in which each node has at most two children, referred to as the **left child** and the **right child**. It consists of:
+- **Nodes**: The individual elements of the tree.
+- **Edges**: The connection between nodes.
+- **Root**: The top node of the tree without a parent.
+- **Leaves**: Nodes without any children.
+
+### Node Relationships
+In a binary tree:
+- Each node contains:
+  - A data field (value)
+  - A pointer/reference to the left child
+  - A pointer/reference to the right child
+
+Here's a simple visualization of a binary tree:
+
+```
+         A
+        / \
+       B   C
+      / \
+     D   E
+```
+
+## Creating and Manipulating Binary Trees
+
+### Insertion in a Binary Tree
+Inserting elements into a binary tree typically keeps the tree balanced. Here’s how we can insert values into a binary tree in C++:
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// Define the structure of a tree node
+struct Node {
+    int data;
+    Node* left;
+    Node* right;
+};
+
+// Function to create a new node
+Node* createNode(int data) {
+    Node* newNode = new Node();
+    newNode->data = data;
+    newNode->left = newNode->right = NULL;
+    return newNode;
+}
+
+// Function to insert a new value in the binary tree
+Node* insert(Node* root, int data) {
+    if (root == NULL) {
+        return createNode(data);
+    }
+    if (data < root->data) {
+        root->left = insert(root->left, data);
+    } else {
+        root->right = insert(root->right, data);
+    }
+    return root;
+}
+```
+
+### Deletion in a Binary Tree
+Removing a node also requires adjustment of pointers to maintain tree integrity. Here’s a basic example of deletion:
+
+```cpp
+Node* deleteNode(Node* root, int data) {
+    if (root == NULL) return root;
+
+    // Traverse to find the node to delete
+    if (data < root->data) {
+        root->left = deleteNode(root->left, data);
+    } else if (data > root->data) {
+        root->right = deleteNode(root->right, data);
+    } else {
+        // Node found
+        if (root->left == NULL) {
+            Node* temp = root->right;
+            delete root;
+            return temp;
+        } else if (root->right == NULL) {
+            Node* temp = root->left;
+            delete root;
+            return temp;
+        }
+        // Node with two children
+        Node* temp = minNode(root->right);
+        root->data = temp->data;
+        root->right = deleteNode(root->right, temp->data);
+    }
+    return root;
+}
+
+Node* minNode(Node* root) {
+    Node* current = root;
+    while (current && current->left != NULL)
+        current = current->left;
+    return current;
+}
+```
+
+## Tree Traversal Methods
+
+Tree traversal refers to the process of visiting every node in the tree exactly once.
+
+### In-Order Traversal
+In-order traversal visits nodes in the following order: left child, current node, right child. This traversal is particularly useful for binary search trees:
+
+```cpp
+void inOrderTraversal(Node* root) {
+    if (root != NULL) {
+        inOrderTraversal(root->left);
+        cout << root->data << " ";
+        inOrderTraversal(root->right);
+    }
+}
+```
+
+### Pre-Order Traversal
+In pre-order, the current node is visited first, followed by the left child and then the right child. This is useful for creating a copy of the tree:
+
+```cpp
+void preOrderTraversal(Node* root) {
+    if (root != NULL) {
+        cout << root->data << " ";
+        preOrderTraversal(root->left);
+        preOrderTraversal(root->right);
+    }
+}
+```
+
+### Post-Order Traversal
+In post-order traversal, the left child is visited first, followed by the right child, and finally the current node. It’s often used in deleting nodes:
+
+```cpp
+void postOrderTraversal(Node* root) {
+    if (root != NULL) {
+        postOrderTraversal(root->left);
+        postOrderTraversal(root->right);
+        cout << root->data << " ";
+    }
+}
+```
+
+### Practical Applications of Binary Trees
+Binary trees have numerous applications, including:
+- Facilitating efficient searching and sorting (Binary Search Tree)
+- Organizing hierarchical data (file systems, organization structures)
+- Implementing structures like heaps and expression trees
+
+## Exercises
+
+1. **Create and Manipulate a Binary Tree**:
+   - Write a C++ program to create a binary tree and perform the following:
+     - Insert at least 10 nodes
+     - Perform in-order, pre-order, and post-order traversals
+
+2. **Modify the Deletion Program**:
+   - Enhance the above deletion function to handle cases of deleting a node with two children. Test with different scenarios.
+
+3. **Real-World Application**:
+   - Design a simple application that uses a binary tree to manage student records, allowing for insertion, deletion, and traversal of records.
+
+## Chapter Summary
+In this chapter, you learned about binary trees and how they are organized and manipulated. You explored how to insert and delete nodes effectively and engaged with different types of traversal methods to access the tree’s data. Armed with this knowledge, you'll be able to utilize binary trees in varied programming challenges and projects moving forward. Happy coding!

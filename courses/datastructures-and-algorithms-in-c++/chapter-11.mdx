@@ -1,0 +1,111 @@
+---
+title: problem-solving-techniques
+order: 11
+---
+
+# Chapter 11 - Problem-Solving Techniques
+
+## Introduction
+
+Welcome to the chapter on problem-solving techniques! If you're stepping into the world of coding, you'll soon realize that the bulk of programming is indeed problem-solving. In this chapter, we’ll unlock the essential skills needed to tackle coding challenges systematically. Whether you're coding an algorithm or debugging an issue, having a clear problem-solving strategy is a game changer.  
+
+We’ll dive into approaches, break down complex problems, tackle various coding challenges, and learn the art of optimization. Strap in, and let’s get our hacker minds wired to solve problems effectively!
+
+## Introduction to Problem-Solving Approaches
+
+When it comes to problem-solving in programming, there are a few key approaches to consider:
+
+- **Brute Force**: Trying all possible solutions until you find the right one. It’s not always efficient but can be straightforward for small problems.
+- **Divide and Conquer**: Breaking the problem into smaller sub-problems, solving those, and combining results. This is common in sorting algorithms like merge sort.
+- **Dynamic Programming**: Breaking down problems into simpler overlapping subproblems. This is powerful for optimization problems such as finding the shortest path or Fibonacci numbers.
+- **Greedy Algorithms**: Making the best choice at each stage to find a global optimum. Useful for problems like making change with the least number of coins.
+
+### Breaking Down Problems into Manageable Steps
+
+Once you identify your approach, breaking the problem down into smaller, manageable pieces is crucial. Here’s a standard methodology to follow:
+
+1. **Understand the Problem**: Read the problem statement thoroughly. What is being asked? What are the inputs and outputs?
+  
+2. **Plan the Solution**: Think about how you can solve the problem. Sketch out your approach and ask:
+   - What data structures do I need?
+   - Are there existing algorithms I can use?
+  
+3. **Implement the Code**: Write the code based on your plan. Don’t be afraid to take your time here as writing clean code is crucial.
+
+4. **Test Your Solution**: Ensure you test with various scenarios, including edge cases. Testing helps identify any bugs in your logic.
+
+5. **Optimize the Code**: Analyzing your code can help you identify potential improvements, reducing time complexity and enhancing efficiency.
+
+## Common Coding Challenges and Practice Exercises
+
+### Challenge 1: FizzBuzz
+
+Write a program that prints the numbers from 1 to 100. For multiples of three, print "Fizz" instead of the number and for the multiples of five, print "Buzz". For numbers which are multiples of both three and five, print "FizzBuzz".
+
+#### Example Code
+```cpp
+#include <iostream>
+using namespace std;
+int main() {
+    for (int i = 1; i <= 100; ++i) {
+        if (i % 3 == 0 && i % 5 == 0)
+            cout << "FizzBuzz" << endl;
+        else if (i % 3 == 0)
+            cout << "Fizz" << endl;
+        else if (i % 5 == 0)
+            cout << "Buzz" << endl;
+        else
+            cout << i << endl;
+    }
+    return 0;
+}
+```
+
+### Challenge 2: Reverse a String
+
+Write a function that takes a string and returns it in reverse order.
+
+#### Example Code
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+string reverseString(string str) {
+    string reversed = "";
+    for(int i = str.length() - 1; i >= 0; i--) {
+        reversed += str[i];
+    }
+    return reversed;
+}
+
+int main() {
+    string input = "hello";
+    cout << "Reversed: " << reverseString(input) << endl;
+    return 0;
+}
+```
+
+## Reviewing Solutions and Optimizing Code
+
+After implementing your solutions, take time to review and optimize them. Consider the following:
+
+- **Code Quality**: Ensure your code is readable. Using meaningful variable names and adding comments where necessary makes it easier for you and others to understand.
+  
+- **Efficiency**: Check time and space complexity. Are you using the best approach? Analyze it using Big O notation.
+
+- **Edge Cases**: Always consider and test edge cases to ensure your solution works universally and avoids unexpected errors.
+
+## Practical Exercises or Assignments
+
+- **Exercise 1**: Write a program to count the number of vowels in a given string.
+  
+- **Exercise 2**: Create a function that checks if a string is a palindrome (reads the same backward and forward).
+
+- **Exercise 3**: Implement a simple calculator that can perform addition, subtraction, multiplication, and division based on user input.
+
+## Chapter Summary
+
+In this chapter, we laid the groundwork for algorithmic thinking and problem-solving skills essential for every programmer. We explored various problem-solving approaches, learned to break down problems step-by-step, attempted common coding challenges, and discussed code reviewing and optimization.
+
+As you practice these techniques, you’ll find that each problem becomes more manageable, and your coding skills will improve exponentially. Keep practicing, stay curious, and happy coding!

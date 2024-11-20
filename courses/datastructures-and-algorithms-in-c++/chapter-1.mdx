@@ -1,0 +1,125 @@
+---
+title: introduction-to-programming-with-c
+order: 1
+---
+
+# Chapter 1: Introduction to Programming with C++
+
+Welcome to the first chapter of your journey into the world of programming using C++. This chapter is designed to whet your appetite for coding and provide you with foundational knowledge that will pave the way for more advanced topics in computer science. If you’ve ever wondered how to tell a computer what to do, you’re about to find out!
+
+## Overview of Programming Concepts
+
+Programming is the art and science of creating instructions that a computer can follow to perform tasks. It involves writing code in a programming language, and for this course, that language is C++. 
+
+### Why is Programming Important?
+
+- **Automation**: Programming allows us to automate repetitive tasks, saving time and reducing errors.
+- **Problem Solving**: It trains your brain to think logically and analytically—an essential skill in tech.
+- **Creativity**: Coding is also a form of creative expression. You can bring your ideas to life by developing software applications, games, and more.
+- **Job Opportunities**: In our digital age, programming skills are highly sought after in various industries.
+
+## Installing a C++ Compiler (GCC or Visual Studio)
+
+Before we dive into writing code, you need to install a C++ compiler, which translates your human-readable C++ code into machine code that your computer can understand.
+
+### Setting Up GCC (GNU Compiler Collection)
+
+If you’re going the GCC route (commonly used on Linux), follow these steps:
+
+1. Open your terminal.
+2. Install GCC using the package manager. For Ubuntu, use the command:
+   ```bash
+   sudo apt install build-essential
+   ```
+
+### Setting Up Visual Studio
+
+For Windows users, Visual Studio is an excellent choice due to its user-friendly interface. Here’s how to set it up:
+
+1. Download Visual Studio from [the official site](https://visualstudio.microsoft.com/downloads/).
+2. Run the installer and select the "Desktop Development with C++" workload.
+3. Follow the on-screen instructions to complete the installation.
+
+## Writing Your First C++ Program: "Hello, World!"
+
+Now that you have your environment ready, let’s write your first C++ program. This classic exercise introduces you to the fundamentals of syntax.
+
+### Code Example: Hello, World!
+
+Create a new file named `hello.cpp` and add the following code:
+
+```cpp
+#include <iostream> // Include the input-output stream library
+
+int main() { // The execution starts here
+    std::cout << "Hello, World!" << std::endl; // Output to the console
+    return 0; // Return success
+}
+```
+
+### How This Works:
+
+- **#include <iostream>**: This line includes the standard library that allows us to perform input and output operations.
+- **int main()**: This is the main function where the program execution begins.
+- **std::cout**: This is used to print output to the console.
+- **std::endl**: This flushes the output buffer and adds a new line.
+- **return 0;**: This indicates that the program finished successfully.
+
+### Compilation and Execution Process
+
+To run your code, you need to compile it first. Here’s how:
+
+1. Open your terminal/command line.
+2. Navigate to the directory where your `hello.cpp` file is located.
+3. Compile your code with:
+   ```bash
+   g++ hello.cpp -o hello
+   ```
+4. Execute the compiled program with:
+   ```bash
+   ./hello
+   ```
+
+If using Visual Studio:
+- Open your project, press `Ctrl + F5`, and watch your program run!
+
+## Basic Syntax and Structure of C++ Programs
+
+Understanding the basic syntax is crucial for writing bug-free code. Here are some fundamentals:
+
+- **Case Sensitivity**: C++ is case-sensitive. `Variable` and `variable` are treated as different identifiers.
+- **Syntax Elements**:
+  - Comments: Use `//` for single-line comments and `/* ... */` for multi-line comments.
+  - Statements end with a semicolon `;`.
+  - Code blocks are enclosed in `{}`.
+
+## Practical Exercises
+
+1. **Modify Hello World**: Change the printed message in your `hello.cpp` file to something of your choice. Re-run the program to see your changes.
+   
+2. **Basic Calculator**: Create a new file called `calculator.cpp` and implement a simple program that adds two numbers. Here’s a scaffold you can use:
+   ```cpp
+   #include <iostream>
+   
+   int main() {
+       int num1, num2, sum;
+       std::cout << "Enter first number: ";
+       std::cin >> num1; // Take input from user
+       std::cout << "Enter second number: ";
+       std::cin >> num2; // Take input from user
+       sum = num1 + num2; // Calculate the sum
+       std::cout << "Sum is: " << sum << std::endl; // Display the sum
+       return 0;
+   }
+   ```
+
+## Chapter Summary
+
+In this chapter, we laid the groundwork for understanding programming and C++. You learned:
+
+- What programming is and its importance.
+- How to install a C++ compiler.
+- How to write, compile, and run your first C++ program.
+- Basic syntax and structure of a C++ program.
+
+With this foundation, you're now ready to dive deeper into fundamental programming concepts in the next chapter. Keep coding and stay curious!

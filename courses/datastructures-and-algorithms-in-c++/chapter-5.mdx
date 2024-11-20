@@ -1,0 +1,154 @@
+---
+title: linked-lists
+order: 5
+---
+
+# Chapter 5 - Linked Lists
+
+## Introduction
+
+Welcome to the world of linked lists, a must-know data structure that offers flexibility and efficiency that arrays can’t match. If you've ever thought that the way elements are organized in arrays seems a bit rigid, then linked lists will open up a new realm of possibilities for you as a budding hacker. In this chapter, we’ll break down the concept of linked lists, explore their structure, and implement one in C++. Buckle up, because this might just become your favorite data structure!
+
+## Understanding Linked Lists
+
+### Nodes and Pointers
+
+At the core of linked lists is the **node**. A node is a fundamental unit that contains two primary components:
+
+- **Data**: The actual value or information that the node holds. This could be any type of data, such as integers, strings, or even user-defined types.
+- **Pointer**: A reference to the next node in the sequence. This allows linked lists to maintain a dynamic structure since we can easily add or remove nodes.
+
+Here's a basic structure for a node in C++:
+
+```cpp
+struct Node {
+    int data;       // Data stored in the node
+    Node* next;     // Pointer to the next node
+};
+```
+
+In the code above:
+- `Node` is a struct representing a single element in your linked list.
+- `data` holds the value.
+- `next` is a pointer to the next node, facilitating traversal through the list.
+
+## Creating a Linked List: Insertion, Deletion, and Traversal
+
+### Insertion
+
+Inserting nodes into a linked list can be done in several ways. Let's look at how to insert nodes at the beginning and at the end.
+
+#### Inserting at the Beginning
+
+```cpp
+void insertAtBeginning(Node*& head, int newData) {
+    Node* newNode = new Node();
+    newNode->data = newData;
+    newNode->next = head; // Point new node to former head
+    head = newNode; // Update head to new node
+}
+```
+
+#### Inserting at the End
+
+```cpp
+void insertAtEnd(Node*& head, int newData) {
+    Node* newNode = new Node();
+    newNode->data = newData;
+    newNode->next = nullptr;
+
+    if (head == nullptr) {
+        head = newNode; // If empty, new node becomes head
+        return;
+    }
+
+    Node* temp = head; 
+    while (temp->next != nullptr) {
+        temp = temp->next; // Traverse to the last node
+    }
+    temp->next = newNode; // Link the last node to new node
+}
+```
+
+### Deletion
+
+Deleting a node involves updating the pointer of the previous node to point to the node after the one being removed:
+
+#### Deleting a Node
+
+```cpp
+void deleteNode(Node*& head, int key) {
+    Node* temp = head;
+    Node* prev = nullptr;
+
+    if (temp != nullptr && temp->data == key) {
+        head = temp->next; // Move head to the next node
+        delete temp;       // Free memory
+        return;
+    }
+
+    while (temp != nullptr && temp->data != key) {
+        prev = temp; 
+        temp = temp->next;
+    }
+
+    if (temp == nullptr) return; // Key not found
+    
+    prev->next = temp->next; // Unlink node
+    delete temp; // Free memory
+}
+```
+
+### Traversal
+
+Traversing through a linked list involves starting from the head and continuing until you reach a node where the pointer to the next node is `nullptr`.
+
+```cpp
+void printList(Node* node) {
+    while (node != nullptr) {
+        std::cout << node->data << " -> ";
+        node = node->next;
+    }
+    std::cout << "nullptr" << std::endl; // End of list
+}
+```
+
+## Types of Linked Lists
+
+### Singly Linked Lists
+
+- A **singly linked list** has nodes with a single pointer pointing to the next node.
+- Memory-efficient, good for applications requiring frequent additions/removals.
+
+### Doubly Linked Lists
+
+- A **doubly linked list** has nodes with two pointers—one pointing to the next node and one to the previous node. 
+- Allows for easy traversal in both directions but uses more memory.
+
+```cpp
+struct DoublyNode {
+    int data;
+    DoublyNode* next;
+    DoublyNode* prev; // Pointer to the previous node
+};
+```
+
+## Comparing Linked Lists with Arrays
+
+- **Size Flexibility**: Linked lists can dynamically adjust their size, while arrays have a fixed size.
+- **Memory Utilization**: While arrays may waste memory (unused elements), linked lists only use what they need.
+- **Access Speed**: Arrays allow constant time access (O(1)) to elements, while linked lists require O(n) time to find an element due to traversal.
+
+### Exercise and Assignment
+
+1. **Implement a Linked List**: Write a C++ program to create a singly linked list, and include functions to insert nodes at both the beginning and the end, delete a node, and print the list.
+
+2. **Doubly Linked List**: Extend the previous exercise by implementing a doubly linked list. Include functionalities to insert and delete nodes, as well as print the list in both directions.
+
+3. **Comparative Analysis**: Write a short write-up comparing the performance of linked lists versus arrays for a specific use case (e.g., frequent insertions/deletions).
+
+## Chapter Summary
+
+Congratulations! You’ve just taken a giant leap into the world of linked lists! You should now have a solid understanding of linked lists, including how to visualize nodes and pointers, perform insertions, deletions, and traversals, and recognize the differences between singly and doubly linked lists versus arrays.
+
+Linked lists are an essential building block for more complex data structures, so keep coding, experimenting, and digging deeper! In the next chapter, we’ll explore stacks and queues—stay tuned!

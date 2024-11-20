@@ -1,0 +1,151 @@
+---
+title: searching-algorithms
+order: 9
+---
+
+# Chapter 9: Searching Algorithms
+
+## Introduction
+Welcome to the realm of searching algorithms! 🚀 In this chapter, we'll dive deep into how we locate our data efficiently. Searching is crucial in programming as it allows you to retrieve information quickly from large datasets. Whether you're looking for a specific nickname in a contact list or searching for the latest game score, knowing the right searching algorithm is key.
+
+You will learn two fundamental searching algorithms—Linear Search and Binary Search. By the end of this chapter, you’ll know when to use these algorithms and how to implement them in C++. Let’s get our hands dirty with some coding!
+
+## Understanding Searching Concepts
+Searching is the process of finding a specific item in a collection of items. The way we search can drastically affect performance, especially with larger datasets. Here's what you need to keep in mind:
+
+- **Unsorted vs. Sorted Data**: The type of data structure you’re working with influences your searching method. A sorted dataset usually allows for faster search methods.
+- **Complexity**: We'll analyze how the efficiency of a search can be expressed in terms of time complexity. This is where Big O notation comes into play.
+
+### Key Terminologies
+- **Search Space**: The collection in which we are searching for an item.
+- **Search Key**: The specific value we want to find.
+- **Search Algorithm**: A step-by-step procedure to find a search key in the search space.
+
+## Linear Search: Implementation
+Linear search is the most straightforward method. It checks each element in a list until it finds the target value or reaches the end of the list.
+
+### How Linear Search Works
+- Start from the first element.
+- If the current element matches the search key, return its index.
+- If it doesn’t match, move to the next element.
+- Repeat until the element is found or the list ends.
+
+### Code Example
+Let’s implement a linear search in C++:
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// Function for linear search
+int linearSearch(int arr[], int size, int key) {
+    for (int i = 0; i < size; i++) {
+        if (arr[i] == key) {
+            return i; // Found the key, return its index
+        }
+    }
+    return -1; // Key not found
+}
+
+int main() {
+    int arr[] = {10, 20, 30, 40, 50};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int key = 30;
+
+    int result = linearSearch(arr, size, key);
+    if (result != -1) {
+        cout << "Element found at index: " << result << endl;
+    } else {
+        cout << "Element not found" << endl;
+    }
+
+    return 0;
+}
+```
+
+## Binary Search: Requirements and Implementation
+Binary search is a much faster method but requires a sorted dataset. 
+
+### How Binary Search Works
+- Start with the middle element of the dataset.
+- If the middle element is the search key, return its index.
+- If the search key is smaller than the middle element, search in the left half.
+- If the search key is larger, search in the right half.
+- Repeat the process until the key is found or the sub-array size is zero.
+
+### Code Example
+Below is a C++ implementation of binary search:
+
+```cpp
+#include <iostream>
+using namespace std;
+
+// Function for binary search
+int binarySearch(int arr[], int size, int key) {
+    int left = 0;
+    int right = size - 1;
+
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+
+        // Check if key is present at mid
+        if (arr[mid] == key) {
+            return mid; // Key found
+        }
+
+        // If key is greater, ignore left half
+        if (arr[mid] < key) {
+            left = mid + 1;
+        } else {
+            // If key is smaller, ignore right half
+            right = mid - 1;
+        }
+    }
+
+    return -1; // Key not found
+}
+
+int main() {
+    int arr[] = {10, 20, 30, 40, 50};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int key = 40;
+
+    int result = binarySearch(arr, size, key);
+    if (result != -1) {
+        cout << "Element found at index: " << result << endl;
+    } else {
+        cout << "Element not found" << endl;
+    }
+
+    return 0;
+}
+```
+
+## Search Complexity Analysis
+Understanding the performance of your search algorithms is essential:
+
+- **Linear Search Complexity**: 
+  - Best Case: O(1) when the element is found at the first position.
+  - Worst Case: O(n) when the element is at the last position or not present.
+  
+- **Binary Search Complexity**:
+  - Best Case: O(1) when the middle element is the key.
+  - Average and Worst Case: O(log n) since the search space is halved with each step.
+
+### Summary
+- **Linear Search** is simple but inefficient for large datasets, while **Binary Search** is very efficient but requires sorted data.
+- Understanding the strengths and limitations of each method helps you choose the right tool for the job. 
+
+## Practical Exercises
+1. **Implement a Linear Search**: Write a C++ program that prompts the user to enter a list of numbers and a key to search for using linear search.
+2. **Practice Binary Search**: Modify the binary search code to sort the array first using any sorting algorithm you've learned (like bubble sort or selection sort) and then search for a key.
+3. **Compare Performance**: Create a program that measures the time taken by both linear and binary search algorithms using large datasets, and print out your results.
+
+## Chapter Summary
+In this chapter, we explored:
+- **Searching Algorithms**: Their significance and applications.
+- **Linear Search**: A basic searching method suitable for small or unsorted datasets.
+- **Binary Search**: An efficient searching technique that requires sorted data.
+- **Complexity Analysis**: Understanding time complexity to assess algorithm performance.
+
+Armed with this knowledge, you're now ready to tackle searching challenges in your coding journey! Keep practicing, and let's keep those algorithms rolling! 🔥

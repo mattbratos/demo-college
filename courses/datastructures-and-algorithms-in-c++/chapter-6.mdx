@@ -1,0 +1,336 @@
+---
+title: stacks-and-queues
+order: 6
+---
+
+# Chapter 6 - Stacks and Queues
+
+## Introduction
+
+In the world of data structures, **stacks** and **queues** are foundational concepts that enable efficient data management and manipulation. Understanding these structures is crucial for solving a multitude of programming problems, from parsing expressions to managing sequential tasks. 
+
+- **Stacks** follow a "Last In, First Out" (LIFO) approach, meaning the last element added is the first to be removed.
+- **Queues** use a "First In, First Out" (FIFO) approach, where the first element added is the first to be removed.
+
+In this chapter, we'll dive into the definitions, operations, implementation, and real-world applications of stacks and queues in C++. Let's unleash our inner hacker as we explore these essential data structures!
+
+## Stacks
+
+### Definition and Operations
+
+A **stack** is a linear data structure that allows operations primarily at one end. Here are the primary operations associated with stacks:
+
+- **Push**: Add an element to the top of the stack.
+- **Pop**: Remove the top element from the stack.
+- **Peek/Top**: View the top element without removing it.
+- **IsEmpty**: Check if the stack is empty.
+
+### Implementing a Stack Using Arrays
+
+Let's implement a stack using an array in C++:
+
+```cpp
+#include <iostream>
+#define MAX 100 // Maximum size of the stack
+
+class Stack {
+private:
+    int top;
+    int arr[MAX];
+
+public:
+    Stack() {
+        top = -1; // Initialize the top index
+    }
+
+    bool isEmpty() {
+        return top == -1;
+    }
+
+    bool isFull() {
+        return top == MAX - 1;
+    }
+
+    void push(int x) {
+        if (isFull()) {
+            std::cout << "Stack overflow\n";
+        } else {
+            arr[++top] = x; // Push element and increment top
+            std::cout << x << " pushed to stack\n";
+        }
+    }
+
+    int pop() {
+        if (isEmpty()) {
+            std::cout << "Stack underflow\n";
+            return -1;
+        } else {
+            return arr[top--]; // Return top element and decrement it
+        }
+    }
+
+    int peek() {
+        if (isEmpty()) {
+            std::cout << "Stack is empty\n";
+            return -1;
+        }
+        return arr[top];
+    }
+};
+
+int main() {
+    Stack stack;
+    stack.push(10);
+    stack.push(20);
+    std::cout << stack.pop() << " popped from stack\n";
+    std::cout << "Top element is " << stack.peek() << "\n";
+    return 0;
+}
+```
+
+### Implementing a Stack Using Linked Lists
+
+We can also implement a stack using a linked list:
+
+```cpp
+#include <iostream>
+
+class Node {
+public:
+    int data;
+    Node* next;
+    Node(int value) : data(value), next(nullptr) {}
+};
+
+class Stack {
+private:
+    Node* top;
+
+public:
+    Stack() : top(nullptr) {}
+
+    bool isEmpty() {
+        return top == nullptr;
+    }
+
+    void push(int x) {
+        Node* newNode = new Node(x);
+        newNode->next = top;
+        top = newNode;
+        std::cout << x << " pushed to stack\n";
+    }
+
+    int pop() {
+        if (isEmpty()) {
+            std::cout << "Stack underflow\n";
+            return -1;
+        } else {
+            int poppedValue = top->data;
+            Node* temp = top;
+            top = top->next;
+            delete temp; // Free memory
+            return poppedValue;
+        }
+    }
+
+    int peek() {
+        if (isEmpty()) {
+            std::cout << "Stack is empty\n";
+            return -1;
+        }
+        return top->data;
+    }
+};
+
+int main() {
+    Stack stack;
+    stack.push(30);
+    stack.push(40);
+    std::cout << stack.pop() << " popped from stack\n";
+    std::cout << "Top element is " << stack.peek() << "\n";
+    return 0;
+}
+```
+
+## Queues
+
+### Definition and Operations
+
+A **queue** is a linear data structure that follows FIFO behavior. The key operations are:
+
+- **Enqueue**: Add an element to the back of the queue.
+- **Dequeue**: Remove the front element from the queue.
+- **Front**: View the front element without removing it.
+- **IsEmpty**: Check if the queue is empty.
+
+### Implementing a Queue Using Arrays
+
+Here's a basic implementation using an array:
+
+```cpp
+#include <iostream>
+#define MAX 100 
+
+class Queue {
+private:
+    int front, rear;
+    int arr[MAX];
+
+public:
+    Queue() {
+        front = rear = -1; // Initialize indices
+    }
+
+    bool isEmpty() {
+        return front == -1;
+    }
+
+    void enqueue(int x) {
+        if (rear == MAX - 1) {
+            std::cout << "Queue overflow\n";
+        } else {
+            if (isEmpty()) {
+                front = 0; // First element
+            }
+            arr[++rear] = x; // Increment rear and add element
+            std::cout << x << " enqueued to queue\n";
+        }
+    }
+
+    int dequeue() {
+        if (isEmpty()) {
+            std::cout << "Queue underflow\n";
+            return -1;
+        } else {
+            int dequeuedValue = arr[front];
+            if (front >= rear) { // Queue is empty after dequeuing
+                front = rear = -1;
+            } else {
+                front++; // Move front forward
+            }
+            return dequeuedValue;
+        }
+    }
+
+    int frontElement() {
+        if (isEmpty()) {
+            std::cout << "Queue is empty\n";
+            return -1;
+        }
+        return arr[front];
+    }
+};
+
+int main() {
+    Queue queue;
+    queue.enqueue(50);
+    queue.enqueue(60);
+    std::cout << queue.dequeue() << " dequeued from queue\n";
+    std::cout << "Front element is " << queue.frontElement() << "\n";
+    return 0;
+}
+```
+
+### Implementing a Queue Using Linked Lists
+
+Now, let's implement a queue using a linked list:
+
+```cpp
+#include <iostream>
+
+class Node {
+public:
+    int data;
+    Node* next;
+    Node(int value) : data(value), next(nullptr) {}
+};
+
+class Queue {
+private:
+    Node* front;
+    Node* rear;
+
+public:
+    Queue() : front(nullptr), rear(nullptr) {}
+
+    bool isEmpty() {
+        return front == nullptr;
+    }
+
+    void enqueue(int x) {
+        Node* newNode = new Node(x);
+        if (isEmpty()) {
+            front = rear = newNode;
+        } else {
+            rear->next = newNode; // Attach new node at the end
+            rear = newNode; // Move rear
+        }
+        std::cout << x << " enqueued to queue\n";
+    }
+
+    int dequeue() {
+        if (isEmpty()) {
+            std::cout << "Queue underflow\n";
+            return -1;
+        } else {
+            int dequeuedValue = front->data;
+            Node* temp = front;
+            front = front->next;
+            delete temp; // Free memory
+            if (front == nullptr) { // If the queue is empty after dequeue
+                rear = nullptr;
+            }
+            return dequeuedValue;
+        }
+    }
+
+    int frontElement() {
+        if (isEmpty()) {
+            std::cout << "Queue is empty\n";
+            return -1;
+        }
+        return front->data;
+    }
+};
+
+int main() {
+    Queue queue;
+    queue.enqueue(70);
+    queue.enqueue(80);
+    std::cout << queue.dequeue() << " dequeued from queue\n";
+    std::cout << "Front element is " << queue.frontElement() << "\n";
+    return 0;
+}
+```
+
+## Real-World Applications of Stacks and Queues
+
+- **Stacks**:
+  - Undo mechanisms in text editors (last action undone first).
+  - Function call management in programming languages (keeping track of active functions).
+  - Expression evaluation and parsing (in compilers).
+
+- **Queues**:
+  - Task scheduling (maintaining the order of tasks to be processed).
+  - Buffer management (like IO Buffers or print spooling).
+  - Handling requests in a web server (FIFO for processing requests).
+
+## Practical Exercises
+
+1. **Stack Exercises**:
+   - Implement a function to check if a string has balanced parentheses using a stack.
+   - Create a program that converts a decimal number to binary using a stack.
+
+2. **Queue Exercises**:
+   - Implement a queue using a circular array and handle the wrap-around condition.
+   - Write a program that simulates a simple checkout line using a queue (enqueue customers, dequeue them after processing).
+
+## Chapter Summary
+
+In this chapter, we explored:
+
+- The definitions and operational mechanisms of stacks and queues.
+- The implementation of these data structures using arrays and linked lists.
+- Real-world use cases for stacks and queues.
+
+Understanding stacks and queues enhances your problem-solving toolkit, allowing you to approach challenges with structured methodologies. Keep experimenting with the code, and gear up for more advanced data structures and algorithms in the next chapters!

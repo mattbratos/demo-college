@@ -1,0 +1,92 @@
+---
+title: introduction-to-algorithms
+order: 10
+---
+
+# Chapter 10: Introduction to Algorithms
+
+## Introduction
+Welcome to the chapter on algorithms, noob! You’re about to dive into the fascinating world of problem-solving techniques that allow you to tackle complex tasks efficiently. Algorithms are the backbone of computer programming; they dictate how data is processed, manipulated, and transformed into a meaningful output. By mastering algorithms, you’ll enhance your coding toolkit and significantly improve your computational thinking skills.
+
+## Defining Algorithms
+An algorithm is a step-by-step procedure or formula for solving a problem. Think of it as a recipe in cooking: it lists the ingredients and the steps needed to achieve a final dish. In programming, algorithms help you define how a task will be accomplished programmatically. 
+
+### Why Algorithms Matter
+- **Efficiency**: They provide methods to solve problems in the most efficient way possible, saving time and resources.
+- **Reusability**: Well-defined algorithms can be reused across different programs, reducing redundancy in your code.
+- **Clarity**: Clear algorithms make it easier for others (or even yourself in the future) to understand your code.
+
+## Characteristics of Good Algorithms
+Not all algorithms are created equal. Here are some key characteristics that define a good algorithm:
+
+### Efficiency
+- A good algorithm aims to minimize the use of time (speed) and space (memory). 
+- Complexity is often analyzed using Big O notation, which classifies algorithms according to their run-time or space requirements in the worst-case scenario.
+
+### Correctness
+- An algorithm should produce accurate results for all possible inputs it might encounter. If it doesn't work sometimes, it’s not reliable!
+
+## Relationship between Data Structures and Algorithms
+The relationship between data structures and algorithms is crucial. The type of data structure you choose can significantly affect the efficiency of your algorithm.
+
+- **Data Structures**: The way data is organized, stored, and manipulated. Examples include arrays, linked lists, trees, and graphs.
+- **Algorithms**: The procedures used to manipulate data stored in data structures, such as sorting and searching.
+
+### Example
+Consider searching for a specific value in a list. If you use an array (a linear data structure), the algorithm may look like this:
+
+```python
+def linear_search(array, target):
+    for index in range(len(array)):
+        if array[index] == target:
+            return index
+    return -1
+
+my_array = [3, 5, 2, 7, 9]
+result = linear_search(my_array, 7)
+print(result)  # Output: 3
+```
+
+However, if the data were stored in a binary search tree, the search algorithm would be different and more efficient due to the hierarchical nature of the data structure.
+
+## Common Algorithmic Problems and Strategies
+In this section, we'll cover some common problems and strategies that will enhance your algorithmic arsenal.
+
+### Common Problems
+- **Sorting**: Arranging data in a particular order (e.g., ascending or descending).
+- **Searching**: Finding a specific value or condition in a dataset.
+- **Pathfinding**: Finding the shortest path in a graph or network.
+
+### Strategies
+- **Divide and Conquer**: Breaking a problem into smaller subproblems, solving each recursively.
+- **Dynamic Programming**: Storing the results of subproblems to avoid redundant computations.
+- **Greedy Algorithms**: Making the locally optimal choice at each stage with the hope of finding a global optimum.
+
+## Practical Exercise
+1. **Algorithm Identification**: Write down three daily tasks and design an algorithm for each. For example:
+   - Making a cup of coffee
+   - Uploading an image to social media
+   - Organizing your desktop files
+
+2. **Implementation Challenge**:
+   - Implement a simple sorting algorithm (like bubble sort) in C++:
+
+   ```cpp
+   void bubble_sort(int arr[], int n) {
+       for (int i = 0; i < n-1; i++) {
+           for (int j = 0; j < n-i-1; j++) {
+               if (arr[j] > arr[j+1]) {
+                   // swap arr[j] and arr[j+1]
+                   int temp = arr[j];
+                   arr[j] = arr[j+1];
+                   arr[j+1] = temp;
+               }
+           }
+       }
+   }
+   ```
+
+## Chapter Summary
+In this chapter, you learned what algorithms are and why they are essential in programming. You explored the characteristics that make algorithms efficient and correct. The relationship between data structures and algorithms was highlighted, showing how they work together to solve problems. Finally, you gained an introduction to common algorithmic problems and strategies used to tackle them. 
+
+Now you have a solid foundation in algorithms that will serve as a launchpad as you dive deeper into data structures and develop your problem-solving skills. Stay curious and keep coding!
