@@ -1,0 +1,119 @@
+---
+title: software-design-principles
+order: 2
+---
+
+# Software Design Principles
+
+## Introduction
+Welcome to the chapter on Software Design Principles! As junior hackers, grasping these key principles will provide you with the tools necessary to craft maintainable, scalable, and high-quality software. In this chapter, we’ll delve into fundamental design principles that every developer must understand and apply. These principles will help you not only write code that works but also code that lasts.
+
+## Key Principles of Software Design
+
+### SOLID Principles
+The SOLID principles encapsulate five design principles intended to make software designs more understandable, flexible, and maintainable. 
+
+- **S**: **Single Responsibility Principle (SRP)** 
+  - A class should have one, and only one, reason to change. This means that a class should only have one responsibility.
+  - **Example**: Consider a class `ReportGenerator` that handles both report creation and report printing. This violates SRP. 
+
+  ```python
+  class ReportGenerator:
+      def generate_report(self):
+          # logic to generate report
+          pass
+      
+      def print_report(self):
+          # logic to print report
+          pass
+  ```
+
+  Instead, split it into two classes:
+
+  ```python
+  class ReportGenerator:
+      def generate_report(self):
+          # logic to generate report
+          pass
+
+  class ReportPrinter:
+      def print_report(self, report):
+          # logic to print report
+          pass
+  ```
+
+- **O**: **Open/Closed Principle (OCP)**
+  - Software entities should be open for extension but closed for modification. You can add new functionality via inheritance without altering existing code.
+  
+  ```python
+  class Shape:
+      def area(self):
+          pass
+
+  class Circle(Shape):
+      def area(self, radius):
+          return 3.14 * radius * radius
+  ```
+
+- **L**: **Liskov Substitution Principle (LSP)**
+  - Objects of a superclass should be replaceable with objects of a subclass without affecting the correctness of the program.
+
+- **I**: **Interface Segregation Principle (ISP)**
+  - Clients should not be forced to depend on interfaces they do not use. Instead of one large interface, use several smaller interfaces.
+
+- **D**: **Dependency Inversion Principle (DIP)**
+  - High-level modules should not depend on low-level modules. Both should depend on abstractions.
+
+### DRY (Don’t Repeat Yourself) Principle
+The DRY principle focuses on reducing the repetition of code patterns. If you find yourself duplicating code, consider creating a function or a class to handle the repeated logic.
+
+- **Example**: Instead of repeating code for user login in multiple parts of your application, you would encapsulate the login functionality into a function:
+
+```python
+def login_user(username, password):
+    # logic to login user
+    pass
+```
+You can now call `login_user` wherever needed instead of duplicating the login logic.
+
+### KISS (Keep It Simple, Stupid) Principle
+Simplicity is key in software design. Strive for a solution that is as simple as possible, avoiding unnecessary complexity. 
+
+- **Example**: When writing a function, aim to do one thing and do it well. 
+
+```python
+def calculate_discount(price, discount):
+    return price * (1 - discount)
+```
+Rather than creating a complicated nested function structure, this function is straightforward and easy to understand.
+
+### YAGNI (You Aren't Gonna Need It) Principle
+YAGNI promotes writing only the code necessary for the current requirements. You should avoid over-engineering and adding features that are not currently needed, as this can lead to complexity and maintenance issues.
+
+- **Example**: If you’re building a simple todo list application, don’t add features like user authentication until you actually need those features.
+
+```python
+def add_task(task):
+    # logic to add task
+    pass
+```
+
+Focus on implementing just this function first. Features can always be added later as demands arise.
+
+## Practical Exercises
+Here are some assignments to help reinforce these principles:
+
+- **SOLID Principle Exercise**
+  - Identify a class from previous projects that violates any of the SOLID principles. Refactor it accordingly to adhere to SOLID.
+
+- **DRY Principle Challenge**
+  - Take any piece of code you have written that has repetitive code blocks and refactor it to eliminate the repetition.
+
+- **KISS Principle Task**
+  - Review a complex function you’ve written and simplify it. Aim for clarity and conciseness.
+
+- **YAGNI Scenario**
+  - Write a short paragraph about a feature you thought about implementing in your last project but never needed. Reflect on how you would avoid similar situations in the future.
+
+## Chapter Summary
+In this chapter, we explored key software design principles that will guide you in writing quality code. By leveraging the SOLID principles, DRY, KISS, and YAGNI, you can enhance the maintainability and scalability of your software. Practice implementing these principles in your coding projects, and you’ll be well on your way to becoming a competent software developer. Continue to engage with these concepts, as they will play a significant role in your future projects!
