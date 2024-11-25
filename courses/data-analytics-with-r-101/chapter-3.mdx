@@ -1,0 +1,149 @@
+---
+title: basic-r-programming-concepts
+order: 3
+---
+
+# Chapter 3 - Basic R Programming Concepts
+
+## Introduction
+Welcome to the third chapter of Data Analytics with R 101! In this chapter, we will dive into the fundamental programming concepts that make R a powerful tool for data analysis. Whether you're manipulating datasets or performing complex calculations, understanding the basics of R programming will set you up for success.
+
+We’ll cover:
+- R syntax essentials
+- Key data types including vectors, lists, matrices, and data frames
+- Basic operations and calculations in R
+
+By the end of this chapter, you’ll have a solid foundation to build upon as you continue your journey into R programming!
+
+## R Syntax Essentials
+R programming language has a specific syntax that you’ll need to get comfortable with. Here’s a breakdown of the fundamental elements:
+
+### Comments
+- Use the `#` symbol for comments. Anything after this symbol on the same line will be ignored by R.
+  
+```r
+# This is a comment
+print("Hello, R!")  # This will print "Hello, R!" to the console
+```
+
+### Functions
+- Functions in R have a specific format: `function_name(arguments)`.
+  
+```r
+sum_value <- sum(1, 2, 3)  # This calls the sum function
+print(sum_value)            # Output: 6
+```
+
+### Assigning Values
+- Use the `<-` operator (or `=`) for assignment.
+  
+```r
+x <- 10
+y = 5
+z <- x + y  # z is now 15
+```
+
+## Data Types in R
+R has several data types that are fundamental to data manipulation. Understanding these types will help you know how to handle your data effectively.
+
+### Vectors
+- A vector is a one-dimensional array that can hold numeric, character, or logical data.
+
+```r
+# Creating a numeric vector
+numbers <- c(1, 2, 3, 4.5)
+print(numbers)  # Output: [1] 1.0 2.0 3.0 4.5
+```
+
+### Lists
+- A list can contain elements of different types, including other lists.
+
+```r
+# Creating a list
+my_list <- list(name="R", version=4.0, active=TRUE)
+print(my_list)  # Output: $name [1] "R" $version [1] 4 $active [1] TRUE
+```
+
+### Matrices
+- A matrix is a two-dimensional array where all elements must be of the same type.
+
+```r
+# Creating a matrix
+my_matrix <- matrix(1:6, nrow=2, ncol=3)
+print(my_matrix)
+# Output:
+#      [,1] [,2] [,3]
+# [1,]    1    3    5
+# [2,]    2    4    6
+```
+
+### Data Frames
+- A data frame is similar to a table in a database and can hold different types of data.
+
+```r
+# Creating a data frame
+my_data <- data.frame(
+  Name = c("John", "Jane", "Doe"),
+  Age = c(25, 28, 22),
+  Active = c(TRUE, FALSE, TRUE)
+)
+print(my_data)
+# Output:
+#   Name Age Active
+# 1 John  25   TRUE
+# 2 Jane  28  FALSE
+# 3  Doe  22   TRUE
+```
+
+## Basic Operations and Calculations in R
+Once you're familiar with data types, you'll want to perform operations on them. R provides powerful capabilities for math and logical operations.
+
+### Arithmetic Operations
+- R supports basic arithmetic operations like addition, subtraction, multiplication, and division.
+
+```r
+a <- 10
+b <- 3
+
+add <- a + b          # Addition
+subtract <- a - b     # Subtraction
+multiply <- a * b     # Multiplication
+divide <- a / b       # Division
+
+print(add)       # Output: 13
+print(subtract)  # Output: 7
+print(multiply)  # Output: 30
+print(divide)    # Output: 3.333333
+```
+
+### Logical Operations
+- Logical operations are essential for comparison and control flow in data analysis.
+
+```r
+x <- 5
+y <- 10
+
+result <- x > y  # Logical greater than
+print(result)    # Output: FALSE
+
+result <- x == 5  # Logical equality
+print(result)      # Output: TRUE
+```
+
+## Practical Exercises
+Now that you have a grasp of R’s basic programming concepts, let's solidify your understanding with some exercises.
+
+1. **Create a Vector**: Create a vector named `my_vector` containing the numbers 1 through 5. Print the vector.
+   
+2. **Construct a List**: Create a list named `student_info`, including the fields for name, age, and whether the student is a graduate (TRUE/FALSE).
+
+3. **Matrix Operations**: Create a 3x2 matrix filled with the numbers 1–6 and print it. Access and print the element in the second row and first column.
+
+4. **Basic Calculations**:
+   - Set two numeric variables, `first_num = 15` and `second_num = 4`.
+   - Compute and print their addition, subtraction, multiplication, and division.
+
+## Chapter Summary
+In this chapter, we walked through the fundamental programming concepts in R that lay the groundwork for data analysis. We explored R syntax, key data types, and how to perform basic arithmetic and logical operations. These concepts will be essential as you work with real datasets in later chapters.
+
+By solidifying your understanding of these basics, you’ll be prepared to tackle more advanced data manipulation and analysis tasks in R. Now it’s time to continue your journey and experiment with R on your own!

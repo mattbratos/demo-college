@@ -1,0 +1,135 @@
+---
+title: data-manipulation-in-r
+order: 4
+---
+
+# Chapter 4 - Data Manipulation in R
+
+## Introduction to Data Manipulation in R
+
+Welcome to the chapter on Data Manipulation in R, where we dive into transforming raw data into valuable insights! Data manipulation is a fundamental skill in data analytics, helping you clean, organize, and reshape data for analysis and visualization. In this chapter, we’ll introduce you to the tidyverse ecosystem, which is an essential toolset for data manipulation in R, and explore two powerful packages: `dplyr` for data manipulation and `tidyr` for reshaping your data.
+
+Let’s gear up and get your data wrangling skills rolling!
+
+## The Tidyverse Ecosystem
+
+The tidyverse is a collection of R packages designed for data science. These packages share an underlying design philosophy, grammar, and data structures, making them easy to use together. Here are some key packages in the tidyverse:
+
+- **ggplot2**: for data visualization
+- **dplyr**: for data manipulation
+- **tidyr**: for tidying data
+- **readr**: for reading data
+- **purrr**: for functional programming
+- **tibble**: for modern data frames
+
+### Why Tidy Data?
+
+In data analytics, having data in a "tidy" format makes analysis easier, as tidy data:
+- Each variable forms a column
+- Each observation forms a row
+- Each type of observational unit forms a table
+
+To install the tidyverse, simply execute:
+
+```R
+install.packages("tidyverse")
+```
+
+## Data Manipulation with dplyr
+
+The `dplyr` package is your go-to-tool for manipulating data frames in R. It provides a set of functions that allow you to perform operations like filtering, selecting, arranging, and summarizing data.
+
+### Key Functions in dplyr
+
+1. **select()** - Choose specific columns from a data frame.
+2. **filter()** - Subset rows based on specific conditions.
+3. **arrange()** - Sort the data frame by one or more variables.
+4. **mutate()** - Add new variables or modify existing ones.
+5. **summarize() / group_by()** - Aggregate data and create summaries.
+
+### Example: Using dplyr
+
+Let’s work through a practical example using a built-in dataset `mtcars`:
+
+```R
+library(dplyr)
+
+# Loading the dataset
+data(mtcars)
+
+# Selecting columns
+mtcars_selected <- mtcars %>%
+  select(mpg, cyl, hp)
+
+# Filtering rows
+mtcars_filtered <- mtcars %>%
+  filter(cyl == 6)
+
+# Arranging data
+mtcars_arranged <- mtcars %>%
+  arrange(desc(mpg))
+
+# Mutating data
+mtcars_mutated <- mtcars %>%
+  mutate(mpg_to_kmpl = mpg * 0.425144)
+
+# Summarizing data
+mtcars_summary <- mtcars %>%
+  group_by(cyl) %>%
+  summarize(avg_mpg = mean(mpg), total_cars = n())
+```
+
+## Reshaping Data with tidyr
+
+`tidyr` is used to tidy your data by reshaping it, so each variable gets its own column and each observation its own row. The two main functions we’ll cover are:
+
+- **pivot_longer()**: Convert data from wide format to long format.
+- **pivot_wider()**: Convert data from long format to wide format.
+
+### Example: Using tidyr
+
+Suppose we have a dataset where tests for students are recorded:
+
+```R
+library(tidyr)
+
+# Sample data
+test_data <- data.frame(
+  student = c("John", "Jane", "Joe"),
+  math_score = c(90, 80, 85),
+  science_score = c(85, 95, 80)
+)
+
+# Pivoting longer
+test_data_long <- test_data %>%
+  pivot_longer(cols = starts_with("score"), 
+               names_to = "subject", 
+               values_to = "score")
+
+# Changing back to wider format
+test_data_wide <- test_data_long %>%
+  pivot_wider(names_from = subject, values_from = score)
+```
+
+## Practical Exercises
+
+1. **Data Frame Manipulation**:
+   - Load the `iris` dataset.
+   - Use `dplyr` functions to:
+     - Select columns `Sepal.Length` and `Species`.
+     - Filter rows where `Sepal.Length` is greater than 5.
+     - Create a new column that contains the ratio of `Sepal.Length` to `Sepal.Width`.
+
+2. **Reshape Data**:
+   - Create your own data frame containing students and scores in various subjects.
+   - Use `tidyr` functions to pivot the data to long format and then back to wide format.
+
+## Chapter Summary
+
+In this chapter, you've learned the essentials of data manipulation using R, focusing on the tidyverse package ecosystem. We delved into:
+
+- The tidyverse and its importance for data manipulation.
+- Key `dplyr` functions for manipulating data frames.
+- `tidyr` functions for reshaping your data to make it tidy.
+
+Practice these concepts with the provided exercises, and you'll be well on your way to mastering data manipulation in R!
